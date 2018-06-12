@@ -2,25 +2,21 @@ const app = getApp();
 import Tools from '../../utils/Tools.js';
 
 const Tls = new Tools();
+
 Page({
     data: {
-        connectedDeviceId:'',
-        state:''
+
     },
     onLoad: function (options) {
-        
-    },
-    onShow: function () {
         let that = this;
         let deviceId = app.globalData.deviceId;
-        // console.log(deviceId)
         if (deviceId) {
             this.setData({
                 connectedDeviceId: deviceId,
             })
             wx.createBLEConnection({
                 deviceId: deviceId,
-                success: function(res) {
+                success: function (res) {
                     wx.getBLEDeviceServices({
                         deviceId: deviceId,
                         success: function (res) {
@@ -63,7 +59,7 @@ Page({
                     }, 200)
                 },
             })
-            
+
         } else {
             // wx.showModal({
             //     title: '',
@@ -71,9 +67,6 @@ Page({
             //     showCancel: false
             // })
         }
-
-
-
         if (wx.setKeepScreenOn) {
             wx.setKeepScreenOn({
                 keepScreenOn: true,
@@ -82,74 +75,6 @@ Page({
                 }
             })
         }
-    },
-    onHide: function () {
-    
-    },
-    onUnload: function () {
-    
-    },
-    onPullDownRefresh: function () {
-        
-    },
-    toBleList:function(){
-        wx.openBluetoothAdapter({
-            success: function(res) {
-                wx.navigateTo({
-                    url: '../blelist/blelist',
-                })
-            },
-            fail: function(){
-                wx.showModal({
-                    title: '提示',
-                    content: '请打开蓝牙，连接设备',
-                    showCancel: false
-                })
-            }
-        })
-        
-    },
-    opendoor:function(){
-        let that = this;
-        let str = 'FC0007020702FE';
-        wx.openBluetoothAdapter({
-            success: function(res) {
-                wx.getConnectedBluetoothDevices({
-                    services: ['0000FFE5-0000-1000-8000-00805F9B34FB'],
-                    success: function(res) {
-                        console.log(res)
-                        if(res.devices.length != 0){
-                            that.writeValue(str);
-                        }else{
-                            wx.showModal({
-                                title: '提示',
-                                content: '请连接设备',
-                                showCancel: false
-                            })
-                        }
-                    },
-                })
-                
-            },
-            fail:function(){
-                wx.showModal({
-                    title: '提示',
-                    content: '请打开蓝牙，连接设备',
-                    showCancel:false
-                })
-            }
-        })
-        
-    },
-    setTemporaryKey:function(){
-        wx.navigateTo({
-            url: '../setTemporaryKey/setTemporaryKey',
-        })
-    },
-    queryTemporaryKey: function(){
-        wx.navigateTo({
-            url: '../showTemporaryKey/showTemporaryKey',
-        })
     },
     writeValue(str, id) {
         let that = this;
@@ -162,9 +87,6 @@ Page({
         }));
         let awaken1 = awaken.buffer;
         let buffer1 = typedArray.buffer;
-
-
-
         setTimeout(() => {
             wx.writeBLECharacteristicValue({
                 deviceId: that.data.connectedDeviceId,
@@ -218,7 +140,7 @@ Page({
                     // console.log(res)
                 },
                 fail: function (res) {
-                    
+
                 }
             })
         }, 200)
@@ -238,15 +160,6 @@ Page({
         wx.onBLECharacteristicValueChange(function (res) {
             let value = that.ab2hex(res.value);
             console.log(value)
-            if (value === 'fc00080207000dfe') {
-                wx.showToast({
-                    title: '远程开门成功',
-                    duration: 1500
-                })
-                that.setData({
-                    state: '已开锁'
-                })
-            }
 
             if (value.indexOf('fc') != -1 && value.indexOf('fe') != -1) {
                 value = value.match(/fc(\S*)fe/)[1];
@@ -254,14 +167,14 @@ Page({
                 let p = Tls.test(value.slice(0, value.length - 2));
                 if (p === value.slice(value.length - 2, value.length)) {
                     console.log('检验成功')
-                    if(p.indexOf('00100302') != 0){
+                    if (p.indexOf('00100302') != 0) {
                         wx.showToast({
                             title: '验证成功',
                             duration: 1500
                         })
-                        that.writeValue('FC000803020009FE')
+                        // that.writeValue('FC000803020009FE')
                     }
-                    
+
                 }
             } else {
                 if (value.length > 38) {
@@ -275,13 +188,7 @@ Page({
                     })
                 }
             }
-            if (that.data.longStr && that.data.shortStr) {
-                let value = that.data.longStr + that.data.shortStr;
-                console.log(value)
-                value = that.ab2hex(res.value);
-                console.log(value)
-
-            }
+            
         })
     },
     ab2hex: function (buffer) {
@@ -293,4 +200,16 @@ Page({
         )
         return hexArr.join('');
     },
+    onShow: function () {
+        this.writeValue('FC0007020500FE')
+    },
+    onHide: function () {
+    
+    },
+    onUnload: function () {
+    
+    },
+    onShareAppMessage: function () {
+    
+    }
 })

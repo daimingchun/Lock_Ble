@@ -24,13 +24,6 @@ Page({
             this.writeValue('FC000701080EFE');
         }, 200)
     },
-
-    queryUsedId() {
-        setTimeout(() => {
-            this.writeValue('FC0007020104FE');
-        }, 200)
-    },
-
     onLoad: function (options) {
         let that = this;
         let deviceId = app.globalData.deviceId;

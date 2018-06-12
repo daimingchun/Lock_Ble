@@ -65,7 +65,20 @@ page,.container{
 .temporaryOpenDoor{
     position: fixed;
     left: 50%;
-    bottom: 100rpx;
+    bottom: 180rpx;
+    margin-left: -200rpx;
+    width: 400rpx;
+    height: 96rpx;
+    background-color: #009CFF;
+    border-radius: 48rpx;
+    text-align: center;
+    line-height: 96rpx;
+    color: #fff;
+}
+.queryTemporaryBtn{
+    position: fixed;
+    left: 50%;
+    bottom: 50rpx;
     margin-left: -200rpx;
     width: 400rpx;
     height: 96rpx;
