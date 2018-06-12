@@ -216,7 +216,7 @@ Page({
                 serviceId: "0000FFE0-0000-1000-8000-00805F9B34FB",
                 characteristicId: "0000FFE4-0000-1000-8000-00805F9B34FB",
                 success: function (res) {
-                    console.log(res.errMsg)
+                    //console.log(res.errMsg)
                 }
             })
         },200)
@@ -340,7 +340,7 @@ Page({
             wx.getBLEDeviceServices({
                 deviceId: deviceId,
                 success: function (res) {
-                    console.log(res.services)
+                    // console.log(res.services)
                     var details = []
                     for (var i = 0; i < res.services.length; i++) {
                         wx.getBLEDeviceCharacteristics({
@@ -352,7 +352,7 @@ Page({
                                     that.setData({
                                         details: details
                                     })
-                                    console.log(that.data.details)
+                                    // console.log(that.data.details)
                                 }
                             },
                             fail: function (res) {

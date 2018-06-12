@@ -22,7 +22,6 @@ Page({
             wx.getBLEDeviceServices({
                 deviceId: deviceId,
                 success: function (res) {
-                    console.log(res.services)
                     var details = []
                     for (var i = 0; i < res.services.length; i++) {
                         wx.getBLEDeviceCharacteristics({
@@ -34,7 +33,6 @@ Page({
                                     that.setData({
                                         details: details
                                     })
-                                    console.log(that.data.details)
                                 }
                             },
                             fail: function (res) {

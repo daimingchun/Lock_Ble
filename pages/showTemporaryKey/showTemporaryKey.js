@@ -163,16 +163,33 @@ Page({
 
             if (value.indexOf('fc') != -1 && value.indexOf('fe') != -1) {
                 value = value.match(/fc(\S*)fe/)[1];
-                console.log(value.slice(0, value.length - 2))
-                let p = Tls.test(value.slice(0, value.length - 2));
+                let data = value.slice(0, value.length - 2);
+                //console.log(value.slice(0, value.length - 2))
+                let p = Tls.test(data);
                 if (p === value.slice(value.length - 2, value.length)) {
                     console.log('检验成功')
-                    if (p.indexOf('00100302') != 0) {
-                        wx.showToast({
-                            title: '验证成功',
-                            duration: 1500
-                        })
-                        // that.writeValue('FC000803020009FE')
+                    if(value.includes('00110205')){
+                        //console.log('设置临时密码成功')
+                        let res = data.slice(8,data.length);
+                        console.log('res:'+res)
+                        let time = parseInt((res.slice(3, 5) + res.slice(0, 2)),16);
+                        console.log(time)
+                        let cnt = parseInt(res.slice(4,6))
+                        console.log(cnt)
+                        let key = res.slice(8,20)
+                        console.log(key)
+                        let arr = [];
+                        for(let i = 0;i < key.length; i++){
+                            if(i % 2 === 0){
+                                arr.push(key[i] + key[i+1])
+                            }
+                        }
+                        let str = '';
+                        for(let i of arr){
+                            str += String.fromCharCode(parseInt(i,16))
+                        }
+                        console.log(str)
+                        
                     }
 
                 }
