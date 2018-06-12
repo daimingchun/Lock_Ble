@@ -1,0 +1,17 @@
+<view class="container">
+    <view wx:for="{{charList.characteristics}}">
+        <view>{{item.uuid}}</view>
+        <view>
+            read:{{item.properties.read}}
+        </view>
+        <view>
+            write:{{item.properties.write}}
+        </view>
+        <view>
+            notify:{{item.properties.notify}}
+        </view>
+        <view>
+            indicate:{{item.properties.indicate}}
+        </view>
+    </view>
+</view>

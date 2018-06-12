@@ -1,0 +1,37 @@
+<view class="container" wx:if = "{{isConnected}}">
+    <view class='box'>
+        <!-- <button size='mini' bindtap="bindButtonTap">远程开锁</button>
+        <button size='mini' bindtap="querySystemStauts">系统状态查询</button>
+        <button size='mini' bindtap="queryUsedId">查询已用ID</button> -->
+        <view class="item">
+            <view>旋转反锁模式</view>
+            <switch color='#009CFF' bindchange='setSwitch' checked='{{knobLock == 1? true : false}}' data-id='knobLock'></switch>
+        </view>
+        <view class="item">
+            <view>安全模式</view>
+            <switch color='#009CFF' bindchange='setSwitch' checked='{{safeMode == 1? true : false}}' data-id='safeMode'></switch>
+        </view>
+        <view class="item">
+            <view>常开模式</view>
+            <switch color='#009CFF' bindchange='setSwitch' checked='{{openMode == 1? true : false}}' data-id='openMode'></switch>
+        </view>
+        <view class="item">
+            <view>上提反锁</view>
+            <switch color='#009CFF' bindchange='setSwitch' checked='{{upLock == 1? true : false}}' data-id='upLock'></switch>
+        </view>
+        <view class="item">
+            <view>语言设置</view>
+            <radio-group class="radio-group" bindchange="setLanguage">
+                <label class="radio">
+                    <radio color='#009CFF' value="zh" data-id='1' checked="{{language == 1? true : false}}"/>中文
+                    <radio color='#009CFF' value="en" data-id='2'checked="{{language == 2? true : false}}"/>英文
+                </label>
+            </radio-group>
+        </view>
+        <view class="item">
+            <view class="volume-text">音量设置</view>
+            <view class='slider'><slider step='33.3' value='{{volume}}' activeColor="#009CFF" block-size='20' block-color="#009CFF" bindchange='setVolume'></slider></view>
+        </view>
+    </view>
+</view>
+<view wx:else>未连接设备</view>

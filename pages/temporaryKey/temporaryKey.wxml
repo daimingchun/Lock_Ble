@@ -1,0 +1,30 @@
+<view class="container">
+    <view class="title">
+        <view>有效时段</view>
+        <view>{{hour}} 时 {{minute}} 分</view>
+    </view>
+    <picker-view class="picker" indicator-style="height: 100rpx;" value="{{value}}" bindchange="bindChange">
+        <picker-view-column>
+            <view wx:for="{{hours}}" class="picker-item" wx:key="item.id">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column>
+            <view wx:for="{{minutes}}" class="picker-item" wx:key="item.id">{{item}}</view>
+        </picker-view-column>
+    </picker-view>
+    <view class="title title-tow">
+        <view>有效次数</view>
+        <view>{{num}} 次</view>
+    </view>
+    <picker-view class="picker" indicator-style="height: 100rpx;" value="{{value1}}" bindchange="bindChange2">
+        <picker-view-column>
+            <view wx:for="{{nums}}" class="picker-item" wx:key="item.id">{{item}}</view>
+        </picker-view-column>
+    </picker-view>
+    <view class="keyBox">
+        <view class="mincon">
+            <input type='number' focus="{{focus}}" class="keyInput" value='{{pass}}'></input>
+            <view class="iconfont icon-delete" bindtap='emptyKey'></view>
+        </view>
+    </view>
+    <view class="newKey" bindtap='setKey'>生成临时密码</view>
+</view>

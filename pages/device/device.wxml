@@ -1,0 +1,27 @@
+<view class="container">
+    <view class="head">
+        <text style="font-size:x-large;word-break:break-all">设备名称: {{name}}</text>
+        <text style="margin-top:6px;font-size:small;color:gray;word-break:break-all">设备ID: {{connectedDeviceId}}</text>
+    </view>
+    <view class='box' style='border:1px solid #ccc'>
+        <view class="title" style='text-align:center'>系统类</view>
+        <view>用户：</view>
+        <button size='mini' bindtap="bindButtonTap">远程开锁</button>
+        <button size='mini' bindtap="querySystemStauts">系统状态查询</button>
+        <button size='mini' bindtap="queryUsedId">查询已用ID</button>
+        <view>系统状态设置:</view>
+        <view>旋转反锁：<switch bindchange='setSwitch' checked='{{knobLock == 1? true : false}}' data-id='knobLock'></switch></view>
+        <view>安全模式：<switch bindchange='setSwitch' checked='{{safeMode == 1? true : false}}' data-id='safeMode'></switch></view>
+        <view>常开模式：<switch bindchange='setSwitch' checked='{{openMode == 1? true : false}}' data-id='openMode'></switch></view>
+        <view>上提反锁：<switch bindchange='setSwitch' checked='{{upLock == 1? true : false}}' data-id='upLock'></switch></view>
+        <view>语言设置：
+            <radio-group class="radio-group" bindchange="setLanguage">
+                <label class="radio">
+                    <radio value="zh" data-id='1' checked="{{language == 1? true : false}}"/>中文
+                    <radio value="en" data-id='2'checked="{{language == 2? true : false}}"/>英文
+                </label>
+            </radio-group>
+        </view>
+        <view>音量设置：<slider step='33.3' bindchange='setVolume'></slider></view>{{volume}}
+    </view>
+</view>

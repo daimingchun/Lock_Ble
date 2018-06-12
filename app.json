@@ -1,0 +1,48 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/temporaryKey/temporaryKey",
+        "pages/set/set",
+        "pages/blelist/blelist",
+        "pages/device/device",
+        "pages/info/info",
+        "pages/user/user",
+        "pages/history/history"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#009CFF",
+        "navigationBarTitleText": "汇泰龙云锁",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "color": "#515151",
+        "selectedColor": "#009CFF",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "智能控制",
+                "iconPath": "images/01.png",
+                "selectedIconPath": "images/1.png"
+            },
+            {
+                "pagePath": "pages/user/user",
+                "text": "用户管理",
+                "iconPath": "images/02.png",
+                "selectedIconPath": "images/2.png"
+            },
+            {
+                "pagePath": "pages/history/history",
+                "text": "历史记录",
+                "iconPath": "images/03.png",
+                "selectedIconPath": "images/3.png"
+            },
+            {
+                "pagePath": "pages/set/set",
+                "text": "门锁设置",
+                "iconPath": "images/04.png",
+                "selectedIconPath": "images/4.png"
+            }
+        ]
+    }
+}

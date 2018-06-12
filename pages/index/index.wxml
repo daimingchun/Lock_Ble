@@ -1,0 +1,16 @@
+<view class="container">
+    <view class="iconfont icon-ble ble" bindtap='toBleList'></view>
+    <view class="doorBtnBox">
+        <view class="btnBox">
+            <view class="openBtn" bindtap='opendoor'>
+                <image wx:if="{{state === '已开锁'}}" class="lock" src='../../images/locked.png'></image>
+                <image wx:if="{{state === '已关锁'}}" class="lock" src='../../images/lock.png'></image>
+                <image wx:if="{{state === ''}}" class="lock" src='../../images/lock.png'></image>
+            </view>
+        </view>
+        <view class="state-text">{{state}}</view>
+    </view>
+    <view class="bg"></view>
+    <view class="temporaryOpenDoor" bindtap='setTemporaryKey'>临时开门</view>
+</view>
+

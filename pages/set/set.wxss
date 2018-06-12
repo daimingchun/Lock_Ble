@@ -1,0 +1,26 @@
+.container {
+  
+}
+.body {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+.box{
+
+}
+.box .item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 140rpx;
+    padding: 0 32rpx;
+    color: #454545;
+    border-bottom: 1rpx solid #eee;
+}
+.volume-text{
+    flex: 0 0 160rpx;
+}
+.slider{
+    flex: 1
+}
