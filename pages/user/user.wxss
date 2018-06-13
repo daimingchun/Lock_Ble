@@ -1,1 +1,3 @@
-/* pages/user/user.wxss */
+page,.container,.box{
+    height: 100%;
+}

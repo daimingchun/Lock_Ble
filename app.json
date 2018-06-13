@@ -1,12 +1,12 @@
 {
     "pages": [
+        "pages/user/user",
         "pages/index/index",
         "pages/setTemporaryKey/setTemporaryKey",
         "pages/set/set",
         "pages/blelist/blelist",
         "pages/device/device",
         "pages/info/info",
-        "pages/user/user",
         "pages/history/history",
         "pages/showTemporaryKey/showTemporaryKey"
     ],

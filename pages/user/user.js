@@ -59,11 +59,11 @@ Page({
                 this.writeValue('FC0007020104FE');
             }, 200)
         } else {
-            wx.showModal({
-                title: '',
-                content: '请连接设备',
-                showCancel: false
-            })
+            // wx.showModal({
+            //     title: '',
+            //     content: '请连接设备',
+            //     showCancel: false
+            // })
         }
 
         if (wx.setKeepScreenOn) {
