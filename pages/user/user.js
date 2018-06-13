@@ -5,7 +5,7 @@ const Tls = new Tools();
 
 Page({
     data: {
-    
+        userIds:[]
     },
     onLoad: function (options) {
         wx.setNavigationBarTitle({
@@ -148,7 +148,7 @@ Page({
                 characteristicId: "0000FFE9-0000-1000-8000-00805F9B34FB",
                 value: buffer1,
                 success: function (res) {
-                    console.log(res)
+                    //console.log(res)
                 },
                 fail: function (res) {
                     console.log(res)
@@ -201,11 +201,10 @@ Page({
                 serviceId: "0000FFE0-0000-1000-8000-00805F9B34FB",
                 characteristicId: "0000FFE4-0000-1000-8000-00805F9B34FB",
                 success: function (res) {
-                    console.log(res.errMsg)
+                    //console.log(res.errMsg)
                 }
             })
         }, 200)
-
 
         wx.onBLECharacteristicValueChange(function (res) {
             var value = that.ab2hex(res.value);
@@ -215,6 +214,7 @@ Page({
                 let p = Tls.test(value.slice(0, value.length - 2));
                 if (p === value.slice(value.length - 2, value.length)) {
                     console.log('检验成功')
+
                     that.writeValue('FC000803020009FE')
                 }
             } else {
@@ -231,12 +231,71 @@ Page({
             }
             if (that.data.longStr && that.data.shortStr) {
                 let value = that.data.longStr + that.data.shortStr;
-                console.log(value)
-                value = that.ab2hex(res.value);
-                console.log(value)
-
+                let PID = value.slice(2,4);
+                let data = value.slice(10, 42);
+                for(let i = 0; i < data.length; i++){
+                    if(i % 4 === 0){
+                        that.data.userIds.push(data.slice(i,i+4))
+                    }
+                }
+                let test = (Tls.test(`${PID}08020100`)).toUpperCase()
+                that.writeValue(`FC${PID}08020100${test}FE`)
             }
-
+            let _arr = [...new Set(that.data.userIds)];
+            _arr = _arr.filter((item) => {
+                    return item != "0000"
+                    })
+            _arr = _arr.map((item) => {
+                return item.slice(2, 4) + item.slice(0, 2)
+            }) 
+            _arr = _arr.map((item) => {
+                let binVal = parseInt(item, 16).toString(2);
+                let length = binVal.length;
+                let str0 = '';
+                if(length != 16){
+                    let num = 16 - length;
+                    for(let i = 0;i < num; i++){
+                        str0 += '0'
+                    }
+                }
+                return str0 + binVal;
+            })
+            _arr = _arr.map((item) => {
+                let ID = (item.slice(item.length-10,item.length)).toString(2);
+                    ID = parseInt(ID,2)
+                let IDTYPE = item.slice(item.length-12,item.length-10).toString(2);
+                    IDTYPE = parseInt(IDTYPE,2).toString(16);
+                let userType = item.slice(item.length - 15, item.length - 12).toString(2);
+                    userType = parseInt(userType, 2).toString(16);
+                switch (IDTYPE){
+                    case '1':
+                        IDTYPE = '管理员';
+                        break;
+                    case '2':
+                        IDTYPE = '普通';
+                        break;
+                    case '3':
+                        IDTYPE = '胁迫报警';
+                        break;
+                }
+                switch (userType){
+                    case '1':
+                        userType = '指纹';
+                        break;
+                    case '2':
+                        userType = '密码';
+                        break;
+                    case '3':
+                        userType = '感应卡';
+                        break;
+                    case '4':
+                        userType = '临时密码';
+                        break;
+                }
+                
+                    return { item, ID, IDTYPE, userType}
+            })
+            console.log(_arr)
             
         })
     },
