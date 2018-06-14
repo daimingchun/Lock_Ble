@@ -3,9 +3,13 @@ import Tools from '../../utils/Tools.js';
 
 const Tls = new Tools();
 
+let timer = null;
+
 Page({
     data: {
-        password:''
+        password:'',
+        validTime: '',
+        validNum: ''
     },
     onLoad: function (options) {
         let that = this;
@@ -190,9 +194,23 @@ Page({
                         }
                         console.log(str)
                         that.setData({
+                            valisNum: cnt,
                             password: str
                         })
-                        
+                        let times = Tls.toHourMinute(time);
+                        let {day,hour,minute} = times;
+                        console.log(day,hour,minute)
+                        let total = parseInt(day) * 86400 + parseInt(hour) * 3600 + parseInt(minute) * 60 + 30;
+                        timer = setInterval(() => {
+                           that.setData({
+                                _day: Math.floor(total / 86400),
+                                _hour: Math.floor((total - that.data._day * 86400) / 3600),
+                                _minute: Math.floor((total - that.data._day * 86400 -that.data._hour * 3600) / 60),
+                                _second: Math.floor((total - that.data._day * 86400 - that.data._hour * 3600 - that.data._minute * 60))
+                           })
+                           total--;
+                           
+                        },1000)
                     }
 
                 }

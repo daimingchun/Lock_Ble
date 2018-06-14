@@ -1,14 +1,14 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/showTemporaryKey/showTemporaryKey",
         "pages/user/user",
         "pages/setTemporaryKey/setTemporaryKey",
         "pages/set/set",
         "pages/blelist/blelist",
         "pages/device/device",
         "pages/info/info",
-        "pages/history/history",
-        "pages/showTemporaryKey/showTemporaryKey"
+        "pages/history/history"
     ],
     "window": {
         "backgroundTextStyle": "light",

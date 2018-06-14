@@ -9,3 +9,16 @@
     color: #898989;
     margin-top: 100rpx;
 }
+.cancelPass{
+    position: fixed;
+    left: 50%;
+    bottom: 180rpx;
+    margin-left: -200rpx;
+    width: 400rpx;
+    height: 96rpx;
+    background-color: #009CFF;
+    border-radius: 48rpx;
+    text-align: center;
+    line-height: 96rpx;
+    color: #fff;
+}

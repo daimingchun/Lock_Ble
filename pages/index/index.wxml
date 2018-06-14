@@ -1,5 +1,10 @@
 <view class="container">
     <view class="iconfont icon-ble ble" bindtap='toBleList'></view>
+    <view class="electric">
+        <view class="out">
+             <view class="in"></view> 
+        </view>
+    </view>
     <view class="doorBtnBox">
         <view class="btnBox">
             <view class="openBtn" bindtap='opendoor'>

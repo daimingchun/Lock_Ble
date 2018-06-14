@@ -4,6 +4,41 @@ page,.container{
     height: 100%;
     overflow-x: hidden;
 }
+.electric{
+    position: fixed;
+    top: 120rpx;
+    right: 26rpx;
+    width: 62rpx;
+    height: 62rpx;
+    background-color: #0087DE;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.val{
+    position: absolute;
+    left: 2rpx;
+    top:6rpx;
+    width: 40rpx;
+    height: 12rpx;
+    background: #fff;
+}
+.electric .out{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46rpx;
+    height: 20rpx;
+    background: #fff;
+    background-size: 50rpx 20rpx;   
+}
+.electric .in{
+    width: 40rpx;
+    height: 12rpx;
+    background: #0087DE;
+}
 .ble{
     position: fixed;
     top: 26rpx;
