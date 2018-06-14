@@ -5,7 +5,8 @@ const Tls = new Tools();
 
 Page({
     data: {
-        userIds:[]
+        userIds:[],
+        userList:[]
     },
     onLoad: function (options) {
         wx.setNavigationBarTitle({
@@ -296,7 +297,9 @@ Page({
                     return { item, ID, IDTYPE, userType}
             })
             console.log(_arr)
-            
+            that.setData({
+                userList: _arr
+            })
         })
     },
     ab2hex: function (buffer) {

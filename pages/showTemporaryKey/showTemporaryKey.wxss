@@ -1,1 +1,11 @@
-/* pages/showTemporaryKey/showTemporaryKey.wxss */
+.container{
+    
+}
+.password{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40rpx;
+    color: #898989;
+    margin-top: 100rpx;
+}

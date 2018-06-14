@@ -5,7 +5,7 @@ const Tls = new Tools();
 
 Page({
     data: {
-
+        password:''
     },
     onLoad: function (options) {
         let that = this;
@@ -189,6 +189,9 @@ Page({
                             str += String.fromCharCode(parseInt(i,16))
                         }
                         console.log(str)
+                        that.setData({
+                            password: str
+                        })
                         
                     }
 

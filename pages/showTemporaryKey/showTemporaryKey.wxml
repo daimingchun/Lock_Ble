@@ -1,2 +1,5 @@
-<!--pages/showTemporaryKey/showTemporaryKey.wxml-->
-<text>pages/showTemporaryKey/showTemporaryKey.wxml</text>
+<view class="container">
+    <view class="password">{{password}}</view>
+    <view class="time">{{time}}</view>
+    <view>取消临时密码</view>
+</view>

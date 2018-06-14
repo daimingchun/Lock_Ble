@@ -11,7 +11,7 @@
         <view class="state-text">{{state}}</view>
     </view>
     <view class="bg"></view>
-    <view class="temporaryOpenDoor" bindtap='setTemporaryKey'>临时开门</view>
+    <view class="temporaryOpenDoor" bindtap='setTemporaryKey'>设置临时密码</view>
     <view class="queryTemporaryBtn" bindtap='queryTemporaryKey'>查询临时密码</view>
 </view>
 

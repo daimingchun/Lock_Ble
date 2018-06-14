@@ -1,31 +1,12 @@
 <view class="container">
-    <scroll-view class="box" enable-back-to-top="true" scroll-y="true" style='background:green'>
-        
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
-        <view>4545</view>
+    <scroll-view class="box" enable-back-to-top="true" scroll-y="true">
+        <view wx:for = "{{userList}}" wx:key = "item.id" class="user-item">
+            <view class="iconfont icon-user"></view>
+            <view class="userType">{{item.userType}}</view>
+            <view class="idType">{{item.IDTYPE}}</view>
+            <view class="id">{{item.ID}}</view>
+            <!-- <view>{{item.ID}}--{{item.IDTYPE}}--{{item.userType}}</view> -->
+        </view>
     </scroll-view>
+    
 </view>
