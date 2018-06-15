@@ -5,7 +5,8 @@ const Tls = new Tools();
 Page({
     data: {
         connectedDeviceId:'',
-        state:''
+        state:'',
+        valWidth: 0
     },
     onLoad: function (options) {
         
@@ -13,7 +14,6 @@ Page({
     onShow: function () {
         let that = this;
         let deviceId = app.globalData.deviceId;
-        // console.log(deviceId)
         if (deviceId) {
             this.setData({
                 connectedDeviceId: deviceId,
@@ -21,6 +21,7 @@ Page({
             wx.createBLEConnection({
                 deviceId: deviceId,
                 success: function(res) {
+                    console.log(deviceId)
                     wx.getBLEDeviceServices({
                         deviceId: deviceId,
                         success: function (res) {
@@ -56,23 +57,30 @@ Page({
                         }
                     })
                     setTimeout(() => {
-                        that.writeValue('AA55AA55AA55AA55AA55');
+                        that.writeValue('AA55AA55AA55AA55AA55');   //唤醒模块
                     }, 200)
                     setTimeout(() => {
                         that.writeValue('AA55AA55AA55AA55AA55');
+                    }, 200)
+
+                    setTimeout(() => {
+                        that.writeValue('FC0007030105FE');        //查询门锁信息
+                    },200)
+                    setTimeout(() => {
+                        console.log(deviceId)
+                        that.writeValue('FC0007030105FE');        //查询门锁信息
                     }, 200)
                 },
             })
             
         } else {
+            console.log('连接失败')
             // wx.showModal({
             //     title: '',
             //     content: '请连接设备',
             //     showCancel: false
             // })
         }
-
-
 
         if (wx.setKeepScreenOn) {
             wx.setKeepScreenOn({
@@ -162,8 +170,6 @@ Page({
         }));
         let awaken1 = awaken.buffer;
         let buffer1 = typedArray.buffer;
-
-
 
         setTimeout(() => {
             wx.writeBLECharacteristicValue({

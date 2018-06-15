@@ -1,6 +1,6 @@
 <view class="container">
     <view wx:if = "{{true}}" class="showPassInfo">
-        <view class="password">666888</view>
+        <view class="password">{{password}}</view>
         <view class="time">有效时间还剩余:  {{_day}}天{{_hour}}时{{_minute}}分{{_second}}秒</view>
         <view class="num">有效次数还剩余：   {{validNum}}次</view>
     </view>

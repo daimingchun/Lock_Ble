@@ -1,9 +1,12 @@
 <view class="container">
     <view class="iconfont icon-ble ble" bindtap='toBleList'></view>
-    <view class="electric">
+    <view class="electric" wx:if = "{{connectedDeviceId}}">
         <view class="out">
-             <view class="in"></view> 
+             <view class="in">
+                <view class="val" style="width:{{valWidth}}px;background:{{valWidth <= 20? 'red' : '#fff'}}"></view>
+             </view> 
         </view>
+        <view class="electric-text">电量100%</view>
     </view>
     <view class="doorBtnBox">
         <view class="btnBox">
